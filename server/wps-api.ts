@@ -1,4 +1,4 @@
-import { log } from "./index";
+import { log } from "./log";
 
 const WPS_BASE_URL = "https://api.wps-inc.com";
 

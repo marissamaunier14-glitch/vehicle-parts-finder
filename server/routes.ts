@@ -4,7 +4,7 @@ import { storage } from "./storage";
 import * as wps from "./wps-api";
 import * as bigcommerce from "./bigcommerce-api";
 import * as vehicleData from "./vehicle-data";
-import { log } from "./index";
+import { log } from "./log";
 
 export async function registerRoutes(
   httpServer: Server,

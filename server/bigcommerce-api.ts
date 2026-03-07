@@ -1,4 +1,4 @@
-import { log } from "./index";
+import { log } from "./log";
 
 function getConfig() {
   const storeHash = process.env.BIGCOMMERCE_STORE_HASH;
