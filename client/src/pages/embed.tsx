@@ -33,7 +33,15 @@ function getItemImage(item: WpsItem): string | null {
   return null;
 }
 
-const API_BASE = typeof window !== "undefined" && window.location.origin || "";
+function getApiBase() {
+  if (typeof window === "undefined") return "";
+  const origin = window.location.origin;
+  if (origin.includes("vercel.app")) {
+    return "https://vehicle-parts-finder.replit.app";
+  }
+  return origin;
+}
+const API_BASE = getApiBase();
 
 async function apiFetch(path: string) {
   const res = await fetch(`${API_BASE}${path}`);
@@ -95,8 +103,14 @@ export default function Embed() {
     return () => window.removeEventListener("message", handler);
   }, []);
 
-  const { data: typesData } = useQuery<{ data: VehicleType[] }>({ queryKey: ["/api/vehicle-types"] });
-  const { data: yearsData } = useQuery<{ data: number[] }>({ queryKey: ["/api/years"] });
+  const { data: typesData } = useQuery<{ data: VehicleType[] }>({
+    queryKey: ["/api/vehicle-types"],
+    queryFn: () => apiFetch("/api/vehicle-types"),
+  });
+  const { data: yearsData } = useQuery<{ data: number[] }>({
+    queryKey: ["/api/years"],
+    queryFn: () => apiFetch("/api/years"),
+  });
 
   const { data: makesData } = useQuery<{ data: VehicleMake[] }>({
     queryKey: ["/api/makes", vehicleType],
