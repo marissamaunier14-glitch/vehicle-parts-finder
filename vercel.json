@@ -1,4 +1,5 @@
 {
+  "installCommand": "npm install",
   "buildCommand": "npx vite build --outDir dist/public",
   "outputDirectory": "dist/public",
   "framework": null,
@@ -8,11 +9,12 @@
     }
   },
   "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api" }
+    { "source": "/api/(.*)", "destination": "/api" },
+    { "source": "/((?!api/).*)", "destination": "/index.html" }
   ],
   "headers": [
     {
-      "source": "/embed",
+      "source": "/(.*)",
       "headers": [
         { "key": "X-Frame-Options", "value": "" }
       ]
