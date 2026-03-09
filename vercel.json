@@ -4,12 +4,12 @@
   "outputDirectory": "dist/public",
   "framework": null,
   "functions": {
-    "api/index.mjs": {
+    "api/handler.cjs": {
       "maxDuration": 30
     }
   },
   "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api/index.mjs" },
+    { "source": "/api/(.*)", "destination": "/api/handler.cjs" },
     { "source": "/((?!api).*)", "destination": "/index.html" }
   ],
   "headers": [
